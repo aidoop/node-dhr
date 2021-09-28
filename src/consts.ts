@@ -1,1 +1,3 @@
-export const PACKET_INITIALIZATION = [0x01, 0x06, 0x01, 0x00, 0x00, 0xa5, 0x48, 0x4d]
+export const RTU_TYPE_INITIALIZATION = 0x100
+export const RTU_TYPE_POSITION = 0x0103
+export const RTU_TYPE_FORCE = 0x0104

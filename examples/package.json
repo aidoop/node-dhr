@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@things-factory/node-indydcp": "file:.."
+    "@things-factory/node-dhr": "file:.."
   }
 }

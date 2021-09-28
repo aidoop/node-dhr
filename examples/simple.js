@@ -1,26 +1,19 @@
-const { IndyDCPClient, sleep } = require('@things-factory/node-indydcp')
-
-async function waitForState(client, checkFn) {
-  var robotStatus = await client.getRobotStatus()
-  while (!checkFn(robotStatus)) {
-    await sleep(1000)
-    robotStatus = await client.getRobotStatus()
-  }
-}
+const { AG95Client } = require('@things-factory/node-dhr')
+const { sleep } = require('../build/utils')
 
 ;(async function () {
-  var client = new IndyDCPClient('192.168.1.207', 'NRMK-Indy7')
+  var client = new AG95Client('192.168.1.29', 8888)
   await client.connect()
 
-  await client.goHome()
-  console.log(await client.getRobotStatus())
+  await client.initialize()
+  await sleep(5000)
 
-  await waitForState(client, status => !status.isBusy)
+  await client.close()
+  await sleep(5000)
 
-  await client.goZero()
-  console.log(await client.getRobotStatus())
-
-  await waitForState(client, status => !status.isBusy)
+  await client.open()
+  await sleep(5000)
 
   client.disconnect()
+  console.log('application ended')
 })()
