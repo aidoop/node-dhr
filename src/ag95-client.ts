@@ -40,7 +40,6 @@ export class AG95Client {
   }
 
   async _recvMessage(size) {
-    this.socket.setTimeout(20000)
     var message = await this.socket.read(size)
     if (!message) {
       throw new Error('socket closed')
